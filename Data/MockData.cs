@@ -10,7 +10,7 @@ namespace student_manager_api
         {
             var dataForOneUser = new Student[] {
                 new(
-                  Id: "",
+                  Id: "1",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn A",
@@ -20,7 +20,7 @@ namespace student_manager_api
                   Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
-                  Id: "",
+                  Id: "2",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn B",
@@ -30,7 +30,7 @@ namespace student_manager_api
                   Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
-                  Id: "",
+                  Id: "3",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn C",
@@ -40,7 +40,7 @@ namespace student_manager_api
                   Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
-                  Id: "",
+                  Id: "4",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn D",
@@ -50,7 +50,7 @@ namespace student_manager_api
                   Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
-                  Id: "",
+                  Id: "5",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn E",
@@ -60,7 +60,87 @@ namespace student_manager_api
                   Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
-                  Id: "",
+                  Id: "6",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn F",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "7",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn A",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "8",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn B",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "9",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn C",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "10",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn D",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "11",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn E",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "12",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn F",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "13",
+                  CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
+                  Name: "Nguyễn Văn E",
+                  Gender: Genders.Man,
+                  Img: "default.png",
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
+                ),
+                new(
+                  Id: "14",
                   CreatedDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   AdmissionDate: DateTime.Parse("2021-01-14T05:57:32.319456Z"),
                   Name: "Nguyễn Văn F",
