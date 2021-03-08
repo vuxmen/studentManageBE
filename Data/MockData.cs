@@ -16,7 +16,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn A",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
                   Id: "",
@@ -25,7 +26,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn B",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
                   Id: "",
@@ -34,7 +36,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn C",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
                   Id: "",
@@ -43,7 +46,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn D",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
                   Id: "",
@@ -52,7 +56,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn E",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
                 new(
                   Id: "",
@@ -61,7 +66,8 @@ namespace student_manager_api
                   Name: "Nguyễn Văn F",
                   Gender: Genders.Man,
                   Img: "default.png",
-                  PhoneNumber: "0123456789"
+                  PhoneNumber: "0123456789",
+                  Birthday: DateTime.Parse("2021-01-14T05:57:32.319456Z")
                 ),
             };
 

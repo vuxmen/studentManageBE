@@ -17,14 +17,14 @@ namespace student_manager_api.Controllers
     {
         private static List<Student> students = new(MockData.GenerateData());
 
-        public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile ImageFile);
+        public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile ImageFile, DateTime Birthday);
 
         private static object lockObj = new();
 
         [HttpGet]
         public RequestResult<IEnumerable<Student>> GetStudents(string search, int page, int pageSize)
         {
-            var filteredResult = students.Where(s => s.PhoneNumber.Contains(search) || s.Name.Contains(search));
+            var filteredResult = students.Where(s => s.PhoneNumber.Contains(search) || s.Name.Contains(search)).OrderBy(s => s.CreatedDate);
 
             return new RequestResult<IEnumerable<Student>>(filteredResult.Skip((page - 1) * pageSize).Take(pageSize));
         }
@@ -36,7 +36,7 @@ namespace student_manager_api.Controllers
 
             await saveAvatarAsync(viewModel.ImageFile, studentId);
 
-            Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber) with { Id = studentId, Img = studentId };
+            Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = studentId, CreatedDate = DateTime.UtcNow };
 
             // clone and add new
             students = students.Select(t => t).ToList();
