@@ -9,8 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace student_manager_api.Controllers
 {
     public record RequestResult<T>(T? Data, string Message = "", bool isSuccess = true);
-    // Model bound complex types must not be abstract or value types and must have a parameterless constructor. 
-    // Record types must have a single primary constructor.
+
+    public record RequestResult<T, MetaType>(T? Data, MetaType Meta, string Message = "", bool isSuccess = true);
+
+    public record PagedMeta(int TotalItem);
+
     [ApiController]
     [Route("[controller]/[action]")]
     public class StudentController : ControllerBase
@@ -22,13 +25,13 @@ namespace student_manager_api.Controllers
         private static object lockObj = new();
 
         [HttpGet]
-        public RequestResult<IEnumerable<Student>> GetStudents(string? search, int page, int pageSize)
+        public RequestResult<IEnumerable<Student>, PagedMeta> GetStudents(string? search, int page, int pageSize)
         {
             search = string.IsNullOrEmpty(search) ? "" : search;
 
             var filteredResult = students.Where(s => s.PhoneNumber.Contains(search) || s.Name.Contains(search)).OrderBy(s => s.CreatedDate);
 
-            return new RequestResult<IEnumerable<Student>>(filteredResult.Skip((page - 1) * pageSize).Take(pageSize));
+            return new RequestResult<IEnumerable<Student>, PagedMeta>(filteredResult.Skip((page - 1) * pageSize).Take(pageSize), new PagedMeta(filteredResult.Count()));
         }
 
         [HttpPost]
