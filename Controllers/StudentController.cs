@@ -22,9 +22,11 @@ namespace student_manager_api.Controllers
         private static object lockObj = new();
 
         [HttpGet]
-        public RequestResult<IEnumerable<Student>> GetStudents()
+        public RequestResult<IEnumerable<Student>> GetStudents(string search, int page, int pageSize)
         {
-            return new RequestResult<IEnumerable<Student>>(students);
+            var filteredResult = students.Where(s => s.PhoneNumber.Contains(search) || s.Name.Contains(search));
+
+            return new RequestResult<IEnumerable<Student>>(filteredResult.Skip((page - 1) * pageSize).Take(pageSize));
         }
 
         [HttpPost]
