@@ -47,7 +47,7 @@ namespace student_manager_api.Controllers
             }
             else
             {
-                fileName = "default.png";
+                fileName = "default.jpeg";
             }
 
             Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = fileName, CreatedDate = DateTime.UtcNow };
