@@ -20,7 +20,7 @@ namespace student_manager_api.Controllers
     {
         private static List<Student> students = new(MockData.GenerateData());
 
-        public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile ImageFile, DateTime Birthday);
+        public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
 
         private static object lockObj = new();
 
@@ -39,9 +39,18 @@ namespace student_manager_api.Controllers
         {
             var studentId = Guid.NewGuid().ToString();
 
-            await saveAvatarAsync(viewModel.ImageFile, studentId);
+            var fileName = studentId;
 
-            Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = studentId, CreatedDate = DateTime.UtcNow };
+            if (viewModel.ImageFile != null)
+            {
+                await saveAvatarAsync(viewModel.ImageFile, studentId);
+            }
+            else
+            {
+                fileName = "default.png";
+            }
+
+            Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = fileName, CreatedDate = DateTime.UtcNow };
 
             // clone and add new
             students = students.Select(t => t).ToList();
