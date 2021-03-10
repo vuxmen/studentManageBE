@@ -45,6 +45,13 @@ namespace student_manager_api.Controllers
             return new RequestResult<IEnumerable<Student>, PagedMeta>(filteredResult.Skip((page - 1) * pageSize).Take(pageSize), new PagedMeta(filteredResult.Count()));
         }
 
+        [HttpGet]
+        public RequestResult<Student> GetStudent(string id)
+        {
+            var student = students.Find(s => s.Id == id);
+            return new RequestResult<Student>(student, "", student != null);
+        }
+
         [HttpPost]
         public async Task<RequestResult<Student>> AddStudent([FromForm] AddStudentVM viewModel)
         {
