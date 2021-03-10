@@ -22,6 +22,17 @@ namespace student_manager_api.Controllers
 
         public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
 
+        public record ModifyStudentVM : AddStudentVM
+        {
+            public ModifyStudentVM(string Id, DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday) : base(CreatedDate, AdmissionDate, Name, Gender, PhoneNumber, ImageFile, Birthday)
+            {
+                this.Id = Id;
+            }
+
+            public string Id { get; }
+
+        }
+
         private static object lockObj = new();
 
         [HttpGet]
@@ -43,7 +54,7 @@ namespace student_manager_api.Controllers
 
             if (viewModel.ImageFile != null)
             {
-                await saveAvatarAsync(viewModel.ImageFile, studentId);
+                await saveAvatarAsync(viewModel.ImageFile, studentId, null);
             }
             else
             {
@@ -59,28 +70,48 @@ namespace student_manager_api.Controllers
             return new RequestResult<Student>(newStudent);
         }
 
-        // [HttpPost]
-        // public async Task<RequestResult<Student>> ModifyStudent(StudentVM viewModel)
-        // {
-        //     if (viewModel.Id == string.Empty)
-        //     {
-        //         return new RequestResult<Student>(null, "Student Id should not be empty", false);
-        //     }
+        [HttpPost]
+        public async Task<RequestResult<Student>> ModifyStudent(ModifyStudentVM viewModel)
+        {
+            var studentId = viewModel.Id;
 
-        //     if (viewModel.image != null)
-        //     {
-        //         var fileName = await saveAvatarAsync(viewModel.image);
-        //         viewModel = viewModel with { Img = fileName };
-        //     }
+            var fileName = studentId;
 
-        //     students = students.Select(s => s.Id == viewModel.Id ? viewModel : s).ToList();
-        //     return new RequestResult<Student>(viewModel, "Update success");
-        // }
+            var matchStudent = students.Find(s => s.Id == studentId);
 
-        async Task saveAvatarAsync(IFormFile file, string studentId)
+            if (matchStudent == null)
+            {
+                return new RequestResult<Student>(null, "student does not exist", false);
+            }
+
+            if (viewModel.ImageFile != null)
+            {
+                await saveAvatarAsync(viewModel.ImageFile, studentId, matchStudent.Img);
+            }
+            else
+            {
+                fileName = "default.jpeg";
+            }
+
+            var newStudent = matchStudent
+            with
+            { Id = studentId, Img = fileName, CreatedDate = DateTime.UtcNow };
+
+            // clone and add new
+            students = students.Select(t => t.Id == studentId ? newStudent : t).ToList();
+
+            return new RequestResult<Student>(newStudent);
+        }
+
+        async Task saveAvatarAsync(IFormFile file, string studentId, string? oldFileName)
         {
             var fileExtension = file.FileName.Split(".").Last();
             var fullPath = $"./uploadImg/{studentId}.{fileExtension}";
+            if (oldFileName != null && oldFileName != "default.jpeg")
+            {
+                var oldFullPath = $"./uploadImg/{oldFileName}";
+                System.IO.File.Delete(oldFullPath);
+            }
             System.IO.File.Delete(fullPath);
             using (var fileStream = System.IO.File.Create(fullPath))
             {
