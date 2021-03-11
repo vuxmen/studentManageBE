@@ -21,17 +21,7 @@ namespace student_manager_api.Controllers
         private static List<Student> students = new(MockData.GenerateData());
 
         public record AddStudentVM(DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
-
-        public record ModifyStudentVM : AddStudentVM
-        {
-            public ModifyStudentVM(string Id, DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday) : base(AdmissionDate, Name, Gender, PhoneNumber, ImageFile, Birthday)
-            {
-                this.Id = Id;
-            }
-
-            public string Id { get; }
-
-        }
+        public record ModifyStudentVM(string Id, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
 
         private static object lockObj = new();
 
