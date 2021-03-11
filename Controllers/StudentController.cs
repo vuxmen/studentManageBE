@@ -24,7 +24,7 @@ namespace student_manager_api.Controllers
 
         public record ModifyStudentVM : AddStudentVM
         {
-            public ModifyStudentVM(string Id, DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday) : base(CreatedDate, AdmissionDate, Name, Gender, PhoneNumber, ImageFile, Birthday)
+            public ModifyStudentVM(string Id, DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday) : base(AdmissionDate, Name, Gender, PhoneNumber, ImageFile, Birthday)
             {
                 this.Id = Id;
             }
