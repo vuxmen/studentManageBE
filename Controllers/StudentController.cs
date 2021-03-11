@@ -47,11 +47,11 @@ namespace student_manager_api.Controllers
         {
             var studentId = Guid.NewGuid().ToString();
 
-            var fileName = studentId;
+            var fileName = "";
 
             if (viewModel.ImageFile != null)
             {
-                await saveAvatarAsync(viewModel.ImageFile, studentId, null);
+                fileName = await saveAvatarAsync(viewModel.ImageFile, studentId, null);
             }
             else
             {
@@ -100,7 +100,7 @@ namespace student_manager_api.Controllers
             return new RequestResult<Student>(newStudent);
         }
 
-        async Task saveAvatarAsync(IFormFile file, string studentId, string? oldFileName)
+        async Task<string> saveAvatarAsync(IFormFile file, string studentId, string? oldFileName)
         {
             var fileExtension = file.FileName.Split(".").Last();
             var fullPath = $"./uploadImg/{studentId}.{fileExtension}";
@@ -114,6 +114,8 @@ namespace student_manager_api.Controllers
             {
                 await file.CopyToAsync(fileStream);
             }
+
+            return $"{studentId}.{fileExtension}";
         }
 
     }
