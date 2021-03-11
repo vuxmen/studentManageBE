@@ -78,7 +78,7 @@ namespace student_manager_api.Controllers
         }
 
         [HttpPost]
-        public async Task<RequestResult<Student>> ModifyStudent(ModifyStudentVM viewModel)
+        public async Task<RequestResult<Student>> ModifyStudent([FromForm] ModifyStudentVM viewModel)
         {
             var studentId = viewModel.Id;
 
