@@ -20,7 +20,7 @@ namespace student_manager_api.Controllers
     {
         private static List<Student> students = new(MockData.GenerateData());
 
-        public record AddStudentVM(DateTime CreatedDate, DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
+        public record AddStudentVM(DateTime AdmissionDate, string Name, Genders Gender, string PhoneNumber, IFormFile? ImageFile, DateTime Birthday);
 
         public record ModifyStudentVM : AddStudentVM
         {
@@ -68,7 +68,7 @@ namespace student_manager_api.Controllers
                 fileName = "default.jpeg";
             }
 
-            Student newStudent = new Student(studentId, viewModel.CreatedDate, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = fileName, CreatedDate = DateTime.UtcNow };
+            Student newStudent = new Student(studentId, DateTime.UtcNow, viewModel.AdmissionDate, viewModel.Name, viewModel.Gender, "", viewModel.PhoneNumber, viewModel.Birthday) with { Id = studentId, Img = fileName };
 
             // clone and add new
             students = students.Select(t => t).ToList();
@@ -102,7 +102,7 @@ namespace student_manager_api.Controllers
 
             var newStudent = matchStudent
             with
-            { Id = studentId, Img = fileName, CreatedDate = DateTime.UtcNow };
+            { Id = studentId, Img = fileName };
 
             // clone and add new
             students = students.Select(t => t.Id == studentId ? newStudent : t).ToList();
