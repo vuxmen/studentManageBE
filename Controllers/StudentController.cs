@@ -72,7 +72,7 @@ namespace student_manager_api.Controllers
         {
             var studentId = viewModel.Id;
 
-            var fileName = studentId;
+            var fileName = "";
 
             var matchStudent = students.Find(s => s.Id == studentId);
 
@@ -83,7 +83,7 @@ namespace student_manager_api.Controllers
 
             if (viewModel.ImageFile != null)
             {
-                await saveAvatarAsync(viewModel.ImageFile, studentId, matchStudent.Img);
+                fileName = await saveAvatarAsync(viewModel.ImageFile, studentId, matchStudent.Img);
             }
             else
             {
@@ -92,7 +92,7 @@ namespace student_manager_api.Controllers
 
             var newStudent = matchStudent
             with
-            { Id = studentId, Img = fileName };
+            { Id = studentId, Img = fileName, Name = viewModel.Name, Birthday = viewModel.Birthday, Gender = viewModel.Gender, AdmissionDate = viewModel.AdmissionDate, PhoneNumber = viewModel.PhoneNumber };
 
             // clone and add new
             students = students.Select(t => t.Id == studentId ? newStudent : t).ToList();
